@@ -1,64 +1,84 @@
-.App {
-  background-color: #29353f;
-}
+/*.App {*/
+/*  max-width: 1280px;*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/*  justify-content: space-around;*/
+/*  flex-wrap: wrap;*/
+/*}*/
 
-.parent {
-  padding: 20px;
-  border: 5px solid #3dd2e5;
-  border-radius: 15px;
-  width: 500px;
-  height: 400px;
-}
+/*.wrapperCounter {*/
+/*  !*margin: 20px auto;*!*/
+/*  margin: 20px;*/
+/*  padding: 20px;*/
+/*  width: 500px;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
 
-.counter {
-  font-size: 100px;
-  font-weight: bold;
-  background-color: #3dd2e5;
-  border-radius: 15px;
-  height: 200px;
-  margin-bottom: 30px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/*  border: 5px solid #3dd2e5;*/
+/*  border-radius: 15px;*/
+/*}*/
 
-.maxValueCounter {
-  font-size: 120px;
-  color: #da1212;
-}
+/*.counter {*/
+/*  height: 240px;*/
+/*  margin-bottom: 30px;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
 
-.rowButtons {
-  border: 5px solid #3dd2e5;
-  border-radius: 15px;
-  height: 120px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
+/*  border: 5px solid #3dd2e5;*/
+/*  border-radius: 15px;*/
 
-.button {
-  font-size: 50px;
-  font-weight: bold;
-  background-color: #3dd2e5;
-  border-radius: 15px;
-  width: 180px;
-  height: 80px;
-  cursor: pointer;
-}
+/*  color: #3dd2e5;*/
+/*  font-size: 100px;*/
+/*  font-weight: bold;*/
+/*  text-align: center;*/
+/*}*/
 
-.button:active {
-  background-color: #29353f;
-  color: #3dd2e5;
-}
+/*.maxValueCounter {*/
+/*  font-size: 120px;*/
+/*  color: #da1212;*/
+/*}*/
 
-.buttonNotActive {
-  background-color: #185159;
-  color: #29353f;
-  /*pointer-events: none;*/
-  /*использовалось вместо disabled на кнопки*/
-}
+/*.textValue {*/
+/*  font-size: 24px;*/
+/*}*/
 
-.buttonNotActive:active {
-  color: #29353f;
-}
+
+/*.rowButtons {*/
+/*  padding: 20px;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+
+
+/*  border: 5px solid #3dd2e5;*/
+/*  border-radius: 15px;*/
+/*  gap: 40px;*/
+/*}*/
+
+/*.button {*/
+/*  width: 180px;*/
+/*  height: 60px;*/
+/*  background-color: #3dd2e5;*/
+
+/*  border-radius: 15px;*/
+/*  cursor: pointer;*/
+
+/*  font-size: 50px;*/
+/*  font-weight: bold;*/
+/*}*/
+
+/*.button:active {*/
+/*  background-color: #29353f;*/
+/*  color: #3dd2e5;*/
+/*}*/
+
+/*.buttonNotActive {*/
+/*  !*background-color: #185159;*!*/
+/*  color: #29353f;*/
+/*  !*pointer-events: none;*!*/
+/*  !*использовалось вместо disabled на кнопки*!*/
+/*}*/
+
+/*.buttonNotActive:active {*/
+/*  color: #29353f;*/
+/*}*/
