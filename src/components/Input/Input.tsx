@@ -5,6 +5,7 @@ type InputPropsType = {
   callback: (counter: number) => void
   type: string
   value: number
+  error: boolean
 }
 
 export const Input = (props: InputPropsType) => {
@@ -13,16 +14,20 @@ export const Input = (props: InputPropsType) => {
   }
   
   return (
-    <StyledInput value={props.value} type={props.type} onChange={onChangeInputHandler}/>
+    <StyledInput error={props.error} value={props.value} type={props.type} onChange={onChangeInputHandler}/>
   )
 };
 
-const StyledInput = styled.input`
+type StyledInputPropsType = {
+  error: boolean
+}
+
+const StyledInput = styled.input<StyledInputPropsType>`
   font-size: 60px;
   width: 150px;
-  background-color: #c4faff;
+  background-color: ${props => props.error ? "#c4faff" : "#ff6f6f"};
   border: 3px solid #3dd2e5;
-  border-radius: 5px;
+  border-radius: 10px;
   text-align: center;
   font-weight: bold;
 `

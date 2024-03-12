@@ -10,6 +10,7 @@ export function App() {
   const [startValueCounter, setStartValueCounter] = useState(0);
   const [maxValueCounter, setMaxValueCounter] = useState(4);
   const [currentValueCounter, setCurrentValueCounter] = useState(startValueCounter);
+  const [error, setError] = useState(true)
   
   
   return (
@@ -19,6 +20,7 @@ export function App() {
         maxValueCounter={maxValueCounter}
         currentValueCounter={currentValueCounter}
         setCounter={setCurrentValueCounter}
+        error={error}
       />
       <SetCounter
         startValueCounter={startValueCounter}
@@ -27,6 +29,8 @@ export function App() {
         setStartValueCounter={setStartValueCounter}
         setMaxValueCounter={setMaxValueCounter}
         setCurrentValueCounter={setCurrentValueCounter}
+        error={error}
+        setError={setError}
       />
     </AppWrapper>
   )

@@ -1,5 +1,5 @@
 import {Button} from "../Button/Button";
-import React, {useState} from "react";
+import React from "react";
 import styled from "styled-components";
 import {WrapperCounter} from "../_Styled/WrapperCounter";
 import {RowButtons} from "../_Styled/RowButtons";
@@ -12,6 +12,8 @@ type SetCounterPropsType = {
   setStartValueCounter: (counter: number) => void
   setMaxValueCounter: (counter: number) => void
   setCurrentValueCounter: (counter: number) => void
+  error: boolean
+  setError: (error: boolean) => void
 };
 export const SetCounter = (props: SetCounterPropsType) => {
   
@@ -25,9 +27,13 @@ export const SetCounter = (props: SetCounterPropsType) => {
   //   props.setCounter(inputStartValue)
   // };
   
-  const set = () => {
+  const setStartValue = () => {
     props.setCurrentValueCounter(props.startValueCounter)
   };
+  
+  props.startValueCounter < props.maxValueCounter
+    ? props.setError(true)
+    : props.setError(false);
   
   console.log("setcounter render")
   return (
@@ -39,6 +45,8 @@ export const SetCounter = (props: SetCounterPropsType) => {
             type="number"
             callback={props.setMaxValueCounter}
             value={props.maxValueCounter}
+            // error={props.startValueCounter < props.maxValueCounter}
+            error={props.error}
           />
         </InputWrapper>
         <InputWrapper className={"textValue"}>
@@ -47,14 +55,16 @@ export const SetCounter = (props: SetCounterPropsType) => {
             type="number"
             callback={props.setStartValueCounter}
             value={props.startValueCounter}
+            // error={props.startValueCounter < props.maxValueCounter && props.startValueCounter >= 0}
+            error={props.error && props.startValueCounter >= 0}
           />
         </InputWrapper>
       </SetCounterBody>
       <RowButtons>
         <Button
           name={"set"}
-          callback={set}
-          disabled={false}
+          callback={setStartValue}
+          disabled={!props.error || props.startValueCounter < 0}
         />
       </RowButtons>
     </WrapperCounter>

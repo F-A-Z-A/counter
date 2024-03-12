@@ -9,6 +9,7 @@ type CounterPropsType = {
   maxValueCounter: number
   currentValueCounter: number
   setCounter: (counter: number) => void
+  error: boolean
 }
 export const Counter = (props: CounterPropsType) => {
   const increment = () => props.setCounter(props.currentValueCounter + 1);
@@ -27,12 +28,12 @@ export const Counter = (props: CounterPropsType) => {
         <Button
           name={"inc"}
           callback={increment}
-          disabled={props.currentValueCounter === props.maxValueCounter}
+          disabled={!props.error || props.currentValueCounter === props.maxValueCounter}
         />
         <Button
           name={"reset"}
           callback={reset}
-          disabled={props.currentValueCounter === props.startValueCounter}
+          disabled={!props.error || props.startValueCounter < 0}
         />
       </RowButtons>
     </WrapperCounter>
