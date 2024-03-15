@@ -13,59 +13,46 @@ type SetCounterPropsType = {
   setCurrentValue: (counter: number) => void
   error: boolean
   setError: (error: boolean) => void
-  setVisible: (visible: boolean) => void
 };
-
 export const SetCounter = (props: SetCounterPropsType) => {
-  console.log("SetCounter render");
+  console.log("setcounter render")
   
-  const [buttonDisable, setButtonDisable] = useState(true);
-  
-  props.startValue >= props.maxValue ? props.setError(false) : props.setError(true);
-  
-  const setValue = () => {
-    props.setCurrentValue(props.startValue);
-    props.setVisible(true);
-    setButtonDisable(true);
+  const setStartValue = () => {
+    props.setCurrentValue(props.startValue)
   };
   
-  const setMaxValue = (counter: number) => {
-    props.setMaxValue(counter);
-    setButtonDisable(false);
-    props.setVisible(false);
-  };
-  
-  const setStartValue = (counter: number) => {
-    props.setStartValue(counter);
-    setButtonDisable(false);
-    props.setVisible(false);
-    props.setCurrentValue(counter);
-  };
+  props.startValue >= props.maxValue
+    ? props.setError(false)
+    : props.setError(true)
   
   return (
     <WrapperCounter>
       <SetCounterBody>
-        <InputWrapper>
+        <InputWrapper className={"textValue"}>
           <InputTitle>max value:</InputTitle>
-          <Input type="number"
-                 callback={setMaxValue}
-                 value={props.maxValue}
-                 error={props.error}
-                 keyTitle={"maxValue"}/>
+          <Input
+            type="number"
+            callback={props.setMaxValue}
+            value={props.maxValue}
+            error={props.error}
+          />
         </InputWrapper>
-        <InputWrapper>
+        <InputWrapper className={"textValue"}>
           <InputTitle>start value:</InputTitle>
-          <Input type="number"
-                 callback={setStartValue}
-                 value={props.startValue}
-                 error={props.error && props.startValue >= 0}
-                 keyTitle={"startValue"}/>
+          <Input
+            type="number"
+            callback={props.setStartValue}
+            value={props.startValue}
+            error={props.error && props.startValue >= 0}
+          />
         </InputWrapper>
       </SetCounterBody>
       <RowButtons>
-        <Button name={"set"}
-                callback={setValue}
-                disabled={buttonDisable || !props.error || props.startValue < 0}/>
+        <Button
+          name={"set"}
+          callback={setStartValue}
+          disabled={!props.error || props.startValue < 0}
+        />
       </RowButtons>
     </WrapperCounter>
   );
@@ -89,6 +76,7 @@ const SetCounterBody = styled.div`
 const InputWrapper = styled.div`
   font-size: 24px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: flex-end;
   gap: 20px;

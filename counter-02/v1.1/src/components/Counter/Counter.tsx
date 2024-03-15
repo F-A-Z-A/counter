@@ -1,5 +1,5 @@
 import {Button} from "../Button/Button";
-import React from "react";
+import React, {useState} from "react";
 import {WrapperCounter} from "../_Styled/WrapperCounter";
 import styled from "styled-components";
 import {RowButtons} from "../_Styled/RowButtons";
@@ -10,50 +10,44 @@ type CounterPropsType = {
   currentValue: number
   setCounter: (counter: number) => void
   error: boolean
-  visible: boolean
-  setVisible: (visible: boolean) => void
 }
-
 export const Counter = (props: CounterPropsType) => {
-  console.log("Counter render");
+  const [visible, setVisible] = useState(false)
   
-  const increment = () => {
-    props.setCounter(props.currentValue + 1);
-    // props.setVisible(true);
-  };
+  console.log("counter render")
+  const increment = () => props.setCounter(props.currentValue + 1);
+  const reset = () => props.setCounter(props.startValue);
   
-  const reset = () => {
-    props.setCounter(props.startValue);
-    // props.setVisible(true);
-  };
+  // const start = props.startValue
+  // const max = props.maxValue
+  // const current = props.currentValue
+  // const error = props.error
   
   return (
     <WrapperCounter>
-      <CounterBody visible={props.visible}
-                   maxValue={props.maxValue}
-                   currentValue={props.currentValue}>
+      <CounterBody maxValue={props.maxValue} currentValue={props.currentValue}>
         {props.currentValue}
       </CounterBody>
-      <CounterBody visible={!props.visible}
-                   maxValue={props.maxValue}
-                   currentValue={props.currentValue}>
+      <CounterBody maxValue={props.maxValue} currentValue={props.currentValue}>
         {props.error && props.startValue >= 0
-          ? <CounterMassage startValue={props.startValue}
-                            error={props.error}>
+          ? <CounterMassage startValue={props.startValue} error={props.error}>
             enter values and press "set"
           </CounterMassage>
-          : <CounterMassage startValue={props.startValue}
-                            error={props.error}>
+          : <CounterMassage startValue={props.startValue} error={props.error}>
             !!! incorrect value !!!
           </CounterMassage>}
       </CounterBody>
       <RowButtons>
-        <Button name={"inc"}
-                callback={increment}
-                disabled={!props.error || props.currentValue === props.maxValue || props.startValue < 0}/>
-        <Button name={"reset"}
-                callback={reset}
-                disabled={!props.error || props.startValue < 0}/>
+        <Button
+          name={"inc"}
+          callback={increment}
+          disabled={!props.error || props.currentValue === props.maxValue || props.startValue < 0}
+        />
+        <Button
+          name={"reset"}
+          callback={reset}
+          disabled={!props.error || props.startValue < 0}
+        />
       </RowButtons>
     </WrapperCounter>
   );
@@ -62,12 +56,13 @@ export const Counter = (props: CounterPropsType) => {
 type CounterBodyPropsType = {
   maxValue: number
   currentValue: number
-  visible: boolean
 }
+
 const CounterBody = styled.div<CounterBodyPropsType>`
   min-height: 240px;
   padding: 10px;
   margin-bottom: 30px;
+  display: flex;
   justify-content: center;
   align-items: center;
   border: 5px solid #3dd2e5;
@@ -78,7 +73,6 @@ const CounterBody = styled.div<CounterBodyPropsType>`
     props.currentValue < props.maxValue ? "100px" : "120px"};
   font-weight: bold;
   text-align: center;
-  display: ${props => props.visible ? "flex" : "none"};
 `
 
 type CounterMassagePropsType = {
