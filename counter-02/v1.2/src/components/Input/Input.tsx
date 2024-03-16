@@ -6,22 +6,24 @@ type InputPropsType = {
   type: string
   value: number
   error: boolean
+  keyTitle: string
 }
 
 export const Input = (props: InputPropsType) => {
   const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    props.callback(JSON.parse(e.currentTarget.value))
-  }
+    props.callback(JSON.parse(e.currentTarget.value));
+    localStorage.setItem(props.keyTitle, e.currentTarget.value);
+  };
   
-  return (
-    <StyledInput error={props.error} value={props.value} type={props.type} onChange={onChangeInputHandler}/>
-  )
+  return <StyledInput error={props.error}
+                      value={props.value}
+                      type={props.type}
+                      onChange={onChangeInputHandler}/>
 };
 
 type StyledInputPropsType = {
   error: boolean
 }
-
 const StyledInput = styled.input<StyledInputPropsType>`
   font-size: 60px;
   width: 150px;

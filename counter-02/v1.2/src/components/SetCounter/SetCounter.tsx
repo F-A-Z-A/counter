@@ -57,14 +57,14 @@ export const SetCounter = (props: SetCounterPropsType) => {
           <Input type="number"
                  callback={setStartValue}
                  value={props.startValue}
-                 error={props.error}
+                 error={props.error && props.startValue >= 0}
                  keyTitle={"startValue"}/>
         </InputWrapper>
       </SetCounterBody>
       <RowButtons>
         <Button name={"set"}
                 callback={setValue}
-                disabled={buttonDisable || props.error}/>
+                disabled={buttonDisable || !props.error || props.startValue < 0}/>
       </RowButtons>
     </WrapperCounter>
   );

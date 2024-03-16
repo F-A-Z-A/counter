@@ -10,7 +10,7 @@ export function App() {
   const [startValue, setStartValue] = useState<number>(0);
   const [maxValue, setMaxValue] = useState<number>(1);
   const [currentValue, setCurrentValue] = useState<number>(startValue);
-  const [error, setError] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(true);
   
   useEffect(() => {
@@ -23,6 +23,17 @@ export function App() {
     if (maxValue) setMaxValue(JSON.parse(maxValue));
   }, []);
   
+  useEffect(() => {
+    // startValue === Math.floor(startValue)
+    // || maxValue === Math.floor(startValue)
+    // ||
+    maxValue > startValue
+    && startValue >= 0
+      ? setError(false)
+      : setError(true);
+  }, [startValue, maxValue]);
+  
+  
   return (
     <AppWrapper>
       <SetCounter startValue={startValue}
@@ -31,7 +42,6 @@ export function App() {
                   setMaxValue={setMaxValue}
                   setCurrentValue={setCurrentValue}
                   error={error}
-                  setError={setError}
                   setVisible={setVisible}/>
       <Counter startValue={startValue}
                maxValue={maxValue}

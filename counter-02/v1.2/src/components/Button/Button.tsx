@@ -8,20 +8,15 @@ type ButtonType = {
 }
 
 export const Button = (props: ButtonType) => {
-  const onClickHandler = () => {
-    props.callback()
-  }
+  const onClickHandler = () => props.callback();
   
   return (
-    <StyledButton
-      disabled={props.disabled}
-      onClick={onClickHandler}
-    >
+    <StyledButton disabled={props.disabled}
+                  onClick={onClickHandler}>
       {props.name}
     </StyledButton>
   );
 };
-
 
 const StyledButton = styled.button`
   width: 180px;

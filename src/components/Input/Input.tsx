@@ -27,7 +27,7 @@ type StyledInputPropsType = {
 const StyledInput = styled.input<StyledInputPropsType>`
   font-size: 60px;
   width: 150px;
-  background-color: ${props => props.error ? "#c4faff" : "#ff6f6f"};
+  background-color: ${props => props.error ? "#ff6f6f" : "#c4faff"};
   border: 3px solid #3dd2e5;
   border-radius: 10px;
   text-align: center;

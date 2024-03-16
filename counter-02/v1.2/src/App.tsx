@@ -1,37 +1,54 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./components/Counter/Counter";
 import {SetCounter} from "./components/SetCounter/SetCounter";
 import styled from "styled-components";
 
 export function App() {
-  console.log("app render")
+  console.log("App render")
   
-  const [startValueCounter, setStartValueCounter] = useState(0);
-  const [maxValueCounter, setMaxValueCounter] = useState(4);
-  const [currentValueCounter, setCurrentValueCounter] = useState(startValueCounter);
-  const [error, setError] = useState(false)
+  const [startValue, setStartValue] = useState<number>(0);
+  const [maxValue, setMaxValue] = useState<number>(1);
+  const [currentValue, setCurrentValue] = useState<number>(startValue);
+  const [error, setError] = useState<boolean>(true);
+  const [visible, setVisible] = useState<boolean>(true);
   
+  useEffect(() => {
+    const startValue = localStorage.getItem("startValue");
+    if (startValue) {
+      setStartValue(JSON.parse(startValue));
+      setCurrentValue(JSON.parse(startValue));
+    }
+    const maxValue = localStorage.getItem("maxValue");
+    if (maxValue) setMaxValue(JSON.parse(maxValue));
+  }, []);
+  
+  useEffect(() => {
+    // startValue === Math.floor(startValue)
+    // || maxValue === Math.floor(startValue)
+    // ||
+    startValue >= maxValue
+      ? setError(false)
+      : setError(true);
+  }, [startValue, maxValue]);
   
   
   return (
     <AppWrapper>
-      <SetCounter
-        startValueCounter={startValueCounter}
-        maxValueCounter={maxValueCounter}
-        setStartValueCounter={setStartValueCounter}
-        setMaxValueCounter={setMaxValueCounter}
-        setCurrentValueCounter={setCurrentValueCounter}
-        error={error}
-        setError={setError}
-      />
-      <Counter
-        startValueCounter={startValueCounter}
-        maxValueCounter={maxValueCounter}
-        currentValueCounter={currentValueCounter}
-        setCounter={setCurrentValueCounter}
-        error={error}
-      />
+      <SetCounter startValue={startValue}
+                  setStartValue={setStartValue}
+                  maxValue={maxValue}
+                  setMaxValue={setMaxValue}
+                  setCurrentValue={setCurrentValue}
+                  error={error}
+                  setVisible={setVisible}/>
+      <Counter startValue={startValue}
+               maxValue={maxValue}
+               currentValue={currentValue}
+               setCounter={setCurrentValue}
+               error={error}
+               visible={visible}
+               setVisible={setVisible}/>
     </AppWrapper>
   )
 }
