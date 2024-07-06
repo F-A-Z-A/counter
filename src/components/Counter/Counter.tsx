@@ -4,6 +4,8 @@ import {WrapperCounter} from "../_Styled/WrapperCounter";
 import styled from "styled-components";
 import {RowButtons} from "../_Styled/RowButtons";
 
+// переезд на ACER
+
 type CounterPropsType = {
   startValue: number
   maxValue: number
